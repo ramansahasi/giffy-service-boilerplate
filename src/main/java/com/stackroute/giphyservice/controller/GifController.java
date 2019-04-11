@@ -19,24 +19,28 @@ public class GifController {
     //save gif to database
 
     public ResponseEntity<?> saveGifToWishList(@RequestBody Gif gif) {
+		return null;
 
     }
 
     //delete a gif from database
 
     public ResponseEntity<?> deleteGifFromWishList() {
+		return null;
 
     }
 
     //update caption for a gif
 
     public ResponseEntity<?> updateCaptionForGif() {
+		return null;
 
     }
 
     //get all gifs from  database
 
     public ResponseEntity<?> getAllGifsFromWishList() {
+		return null;
 
     }
 }
