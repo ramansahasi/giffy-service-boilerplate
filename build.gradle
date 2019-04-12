@@ -23,4 +23,10 @@ dependencies {
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.4.0'
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.4.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.8'
+	compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.5.8'
+	compile group: 'org.json', name: 'json', version: '20090211'
+	
+	
+	compile('org.apache.tomcat.embed:tomcat-embed-jasper','javax.servlet:jstl')
 }
