@@ -31,11 +31,13 @@ public class GifControllerView {
 
     @GetMapping(value={"/", "index.html"})
     public ModelAndView index() {
+
+    	LOGGER.info("/delete url called");
     	ModelAndView mv = new ModelAndView("index");
     	try {
 			mv.addObject("gifs", gifService.getAllGifsFromWishList());
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error("Error while getting all GIFs", e);
 		}
     	return mv;
     }
@@ -46,8 +48,7 @@ public class GifControllerView {
     	try {
 			mv.addObject("gifs", gifService.getAllGifsFromWishList());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error("Error while getting creating GIF", e);
 		}
     	return mv;
     }
@@ -61,14 +62,17 @@ public class GifControllerView {
     	try {
     		String gipfyId = gipfyService.uploadGifToServer(file);
     		gif = gipfyService.updateGipfyDetails(gif, gipfyId);
-			gifService.saveGif(gif);
-			mv.addObject("gif", gif);
+    		gif = gifService.saveGif(gif);
 			mv.addObject("isCreated", true);
+		} catch (Exception e) {
+			LOGGER.error("Error while getting saving GIFs", e);
+			mv.addObject("isCreated", false);
+		}
+    	mv.addObject("gif", gif);
+    	try {
 			mv.addObject("gifs", gifService.getAllGifsFromWishList());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			mv.addObject("isCreated", false);
+			LOGGER.error("Error while getting saving GIFs", e);
 		}
 		return mv;
     }
@@ -79,8 +83,7 @@ public class GifControllerView {
     	try {
 			gifService.saveGif(gif);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error("Error while updating GIF", e);
 		}
 		return null;
 
@@ -97,14 +100,14 @@ public class GifControllerView {
 			mv.addObject("gifs", gifService.getAllGifsFromWishList());
 		} catch (GifNotFoundException e) {
 			mv.addObject("isDeleted", false);
+			LOGGER.error("Error while deleting GIF", e);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error("Error while deleting GIF", e);
 		}
 		return mv;
     }
 
-    //update caption for a gif
+    //getting the update page for a particular gif
     @GetMapping("/update")
     public ModelAndView updateView(@RequestParam("gifId") String gifId) {
     	ModelAndView mv = new ModelAndView("update");
@@ -113,8 +116,7 @@ public class GifControllerView {
     	try {
 			mv.addObject("gifs", gifService.getAllGifsFromWishList());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error("Error while updatig caption GIF", e);
 		}
 		return mv;
 
@@ -131,12 +133,12 @@ public class GifControllerView {
     		mv.addObject("isUpdated", true);
 		} catch (GifNotFoundException e1) {
 			mv.addObject("isUpdated", false);
+			LOGGER.error("Error while updating GIF", e1);
 		}
     	try {
 			mv.addObject("gifs", gifService.getAllGifsFromWishList());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error("Error while updating GIF", e);
 		}
 		return mv;
     }
@@ -149,8 +151,7 @@ public class GifControllerView {
     	try {
 			mv.addObject("gifs", gifService.getAllGifsFromWishList());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error("Error while fetching GIFs", e);
 		}
     	return mv;
 

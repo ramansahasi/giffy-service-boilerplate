@@ -99,6 +99,7 @@ public class GipfyService {
 	 */
 	public Gif updateGipfyDetails(Gif gif, String giphyId) {
 		if(giphyId != null && !giphyId.isEmpty()) {
+			gif.setGifId(new String());
 			gif.setGiphyId(giphyId);
 			gif.setGifUrl("<iframe src=\"https://giphy.com/embed/" + giphyId + "\" width=\"480\" height=\"243\" frameBorder=\"0\" class=\"giphy-embed\" allowFullScreen></iframe>");
 			gif.setGifDetails("https://media.giphy.com/media/" + giphyId + "/giphy.gif");
