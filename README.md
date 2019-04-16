@@ -30,7 +30,7 @@ P.S.: Since the hosting is on free Dynos on Heroku, so the first access may be s
 ![Intro to website](https://media.giphy.com/media/Sw6HDss5E521uhd9r3/giphy.gif)
 
 2. To Upload a GIF, visit the website in step 1 > Click 'Upload' in left menu > fill the details and hit 'Upload'
-![Process to upload a GIF image](https://media.giphy.com/media/jRMzMaRIq3JMsFPhOK/giphy.gif)
+![Process to upload a GIF image](https://media.giphy.com/media/h5Wc0bbJzBI9WCcl3Y/giphy.gif)
 
 3. To update an image, go to homepage > hover over any image > click on pencil icon in top left corner:
 ![Process to update a GIF](https://media.giphy.com/media/co0a3jIfn3tJM6a9AU/giphy.gif)
