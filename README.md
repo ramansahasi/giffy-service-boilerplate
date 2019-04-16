@@ -33,7 +33,7 @@ P.S.: Since the hosting is on free Dynos on Heroku, so the first access may be s
 ![Process to upload a GIF image](https://media.giphy.com/media/jRMzMaRIq3JMsFPhOK/giphy.gif)
 
 3. To update an image, go to homepage > hover over any image > click on pencil icon in top left corner:
-![Process to update a GIF](https://media.giphy.com/media/KcWC3tJktwWzkZSjLq/giphy.gif)
+![Process to update a GIF](https://media.giphy.com/media/co0a3jIfn3tJM6a9AU/giphy.gif)
 
 4. To Delete any image > Hover over any image > Click on Pencil icon in the top left > scroll down and hit 'Delete'
 ![Process to delete any GIF](https://media.giphy.com/media/Id0qsPllJTEg8tB75a/giphy.gif)
