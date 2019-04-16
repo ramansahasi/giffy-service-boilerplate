@@ -1,7 +1,10 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
+<jsp:useBean id="random" class="java.util.Random" scope="application" />
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Capture - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Giphy - Manage your GIFs with ease</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -32,37 +35,22 @@
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-			<h1 id="colorlib-logo"><a href="index.html"><span class="flaticon-camera"></span>Capture</a></h1>
+			<h1 id="colorlib-logo"><a href="index.html"><span class="flaticon-camera"></span>Giphy</a></h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
 					<li><a href="index.html">Home</a></li>
-					<li><a href="gallery.html">Gallery</a></li>
-					<li class="colorlib-active"><a href="about.html">About</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li class="colorlib-active"><a href="create">Upload</a></li>
 				</ul>
 			</nav>
-
-			<div class="colorlib-footer">
-				<h3>Follow Us Here!</h3>
-				<div class="d-flex justify-content-center">
-					<ul class="d-flex align-items-center">
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-facebook"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-twitter"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-instagram"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-linkedin"></i></a></li>
-					</ul>
-				</div>
-			</div>
 		</aside> <!-- END COLORLIB-ASIDE -->
 		<div id="colorlib-main">
 			<section class="ftco-section bg-light ftco-bread">
 				<div class="container">
 					<div class="row no-gutters slider-text align-items-center">
 	          <div class="col-md-9 ftco-animate">
-	            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>About</span></p>
-	            <h1 class="mb-3 bread">About Us</h1>
-	            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+	            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Upload</span></p>
+	            <h1 class="mb-3 bread">Upload New Image</h1>
+	            <p>Select an image and enter the details and hit upload. The uploaded image will show on the home page for further modification.</p>
 	          </div>
 	        </div>
 				</div>
@@ -71,7 +59,7 @@
 				<div class="hero-wrap">
 					<div class="overlay"></div>
 					<div class="d-flex">
-						<div class="author-image text img p-md-5 ftco-animate" style="background-image: url(images/author.jpg);">
+						<div class="author-image text img p-md-5 ftco-animate" style="background-image: url(https://i.gifer.com/ENTw.gif);">
 							
 						</div>
 						<div class="author-info text p-4 mt-5 mb-5 ftco-animate">
@@ -79,31 +67,31 @@
 								<h1 class="mb-4">Giphy GIFs</h1>
 								
 <div class="container">
-  <h2>Update Details</h2>
+  <h2>Upload new GIF</h2>
   <form action="saveGifToWishList" method="post" enctype="multipart/form-data">
     <div class="form-group">
-      <label for="email">Type:</label>
+      <label for="type">Type:</label>
       <input type="text" class="form-control" id="type" name="type" value="GIF" readonly>
     </div>
     <div class="form-group">
-      <label for="email">Title:</label>
-      <input type="text" class="form-control" id="title" name="title">
+      <label for="title">Title:</label>
+      <input type="text" class="form-control" id="title" name="title" required>
     </div>
     <div class="form-group">
-      <label for="email">Caption:</label>
-      <input type="text" class="form-control" id="caption" name="caption">
+      <label for="caption">Caption:</label>
+      <input type="text" class="form-control" id="caption" name="caption" required>
     </div>
     <div class="form-group">
-      <label for="email">Username:</label>
-      <input type="text" class="form-control" id="userName" name="userName">
+      <label for="userName">Username:</label>
+      <input type="text" class="form-control" id="userName" name="userName" required>
     </div>
     <div class="form-group">
-      <label for="email">Rating:</label>
-      <input type="text" class="form-control" id="rating" name="rating">
+      <label for="rating">Rating:</label>
+      <input type="number" class="form-control" id="rating" name="rating" required>
     </div>
     <div class="form-group">
-      <label for="email">Select File:</label>
-       <input type="file" name="file"/>
+      <label for="file">Select File:</label>
+       <input type="file" name="file" accept=".gif"/ required>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
@@ -116,113 +104,28 @@
 			</section>
 			<section class="ftco-section">
 	    	<div class="container">
+	    		<h2>Random Images</h2>
 	    		<div class="row">
-						<div class="col-md-6 col-lg-3 ftco-animate">
-							<div class="staff">
-								<div class="img" style="background-image: url(images/person_1.jpg);"></div>
-								<div class="text pt-4">
-									<h3><a href="#">Edward Howard</a></h3>
-									<span class="position mb-2">Founder, Photographer</span>
-									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-									<ul class="ftco-social-icon d-flex">
-		                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-		              </ul>
+	    				<c:set var = "maxSize" scope = "session" value = "${gifs.size()-4 >= 0 ? gifs.size()-4 : 0}"/>
+	    				<c:set var = "index" scope = "session" value = "${maxSize == 0 ? 0 : random.nextInt(maxSize)}"/>
+    			        <c:forEach var = "i" begin = "0" end = "${gifs.size() >=4 ? 3 : gifs.size()-1 }">
+    			        	<c:set var = "gif" scope = "session" value = "${(index+i) < 0 ? 0 : gifs.get(index+i)}"/>
+							<div class="col-md-6 col-lg-3 ftco-animate" onclick="event.preventDefault();window.location.href='update?gifId=${gif.getGifId()}';" style="cursor:pointer">
+								<div class="staff">
+									<div class="img" style="background-image: url(${gif.gifDetails});"></div>
+									<div class="text pt-4">
+										<h3><a href="#">${gif.title}</a></h3>
+										<span class="position mb-2">${gif.userName}</span>
+										<p>${gif.caption}</p>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-6 col-lg-3 ftco-animate">
-							<div class="staff">
-								<div class="img" style="background-image: url(images/person_2.jpg);"></div>
-								<div class="text pt-4">
-									<h3><a href="#">Simon Will</a></h3>
-									<span class="position mb-2">Photo Specialists</span>
-									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-									<ul class="ftco-social-icon d-flex">
-		                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-		              </ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-3 ftco-animate">
-							<div class="staff">
-								<div class="img" style="background-image: url(images/person_3.jpg);"></div>
-								<div class="text pt-4">
-									<h3><a href="#">Brian Adam</a></h3>
-									<span class="position mb-2">Photographer</span>
-									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-									<ul class="ftco-social-icon d-flex">
-		                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-		              </ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-3 ftco-animate">
-							<div class="staff">
-								<div class="img" style="background-image: url(images/person_4.jpg);"></div>
-								<div class="text pt-4">
-									<h3><a href="#">Edward Howard</a></h3>
-									<span class="position mb-2">Graphic Designer</span>
-									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-									<ul class="ftco-social-icon d-flex">
-		                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-		              </ul>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 	    	</div>
 	    </section>
 	    <footer class="ftco-footer ftco-bg-dark ftco-section">
 	      <div class="container px-md-5">
-	        <div class="row mb-5">
-	          <div class="col-md">
-	            <div class="ftco-footer-widget mb-4 ml-md-4">
-	              <h2 class="ftco-heading-2">Category</h2>
-	              <ul class="list-unstyled categories">
-	                <li><a href="#">Photography <span>(6)</span></a></li>
-	                <li><a href="#">Fashion <span>(8)</span></a></li>
-	                <li><a href="#">Technology <span>(2)</span></a></li>
-	                <li><a href="#">Travel <span>(2)</span></a></li>
-	              </ul>
-	            </div>
-	          </div>
-	          <div class="col-md">
-	             <div class="ftco-footer-widget mb-4">
-	              <h2 class="ftco-heading-2">Archives</h2>
-	              <ul class="list-unstyled categories">
-	              	<li><a href="#">November 2018 <span>(105)</span></a></li>
-	              	<li><a href="#">October 2018 <span>(212)</span></a></li>
-	                <li><a href="#">September 2018 <span>(150)</span></a></li>
-	                <li><a href="#">August 2018 <span>(100)</span></a></li>
-	                <li><a href="#">July 2018 <span>(200)</span></a></li>
-	              </ul>
-	            </div>
-	          </div>
-	          <div class="col-md">
-	            <div class="ftco-footer-widget mb-4">
-	            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-	            	<div class="block-23 mb-3">
-		              <ul>
-		                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-		                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-		                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-		              </ul>
-		            </div>
-	            </div>
-	          </div>
-	        </div>
 	        <div class="row">
 	          <div class="col-md-12">
 

@@ -19,20 +19,37 @@ public class GifServiceImpl implements GifService {
 	
 	@Override
 	public Gif saveGif(Gif gif) throws GifAlreadyExistsException {
-		gif = gifRepository.save(gif);
+		if(gifRepository.existsById(gif.getGifId())) {
+			throw new GifAlreadyExistsException();
+		}
+		else {
+			gif = gifRepository.save(gif);
+		}
 		return gif;
 	}
 
 	@Override
 	public boolean deleteGif(String gifId) throws GifNotFoundException {
-		// TODO Auto-generated method stub
-		return false;
+		if(gifRepository.existsById(gifId)) {
+			gifRepository.deleteById(gifId);
+			return true;
+		}
+		else {
+			throw new GifNotFoundException();
+		}
 	}
 
 	@Override
 	public Gif updateCaptionForGif(String caption, String gifId) throws GifNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		Gif gif = gifRepository.getOne(gifId);
+		if(gif != null) {
+			gif.setCaption(caption);
+			gif = gifRepository.save(gif);
+		}
+		else {
+			throw new GifNotFoundException();
+		}
+		return gif;
 	}
 
 	@Override

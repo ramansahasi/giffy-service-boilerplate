@@ -1,10 +1,12 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
+<jsp:useBean id="random" class="java.util.Random" scope="application" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
-    <title>Capture - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Giphy - Manage your GIFs with ease</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -29,64 +31,37 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
   </head>
   <body>
 
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-			<h1 id="colorlib-logo"><a href="index.html"><span class="flaticon-camera"></span>Capture</a></h1>
+			<h1 id="colorlib-logo"><a href="index.html"><span class="flaticon-camera"></span>Giphy</a></h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
 					<li><a href="index.html">Home</a></li>
-					<li><a href="gallery.html">Gallery</a></li>
-					<li class="colorlib-active"><a href="about.html">About</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li><a href="create">Upload</a></li>
 				</ul>
 			</nav>
-
-			<div class="colorlib-footer">
-				<h3>Follow Us Here!</h3>
-				<div class="d-flex justify-content-center">
-					<ul class="d-flex align-items-center">
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-facebook"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-twitter"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-instagram"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-linkedin"></i></a></li>
-					</ul>
-				</div>
-			</div>
 		</aside> <!-- END COLORLIB-ASIDE -->
 		<div id="colorlib-main">
 			<section class="ftco-section bg-light ftco-bread">
 				<div class="container">
 					<div class="row no-gutters slider-text align-items-center">
-	          <div class="col-md-9 ftco-animate">
-	            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>About</span></p>
-	            <h1 class="mb-3 bread">About Us</h1>
-	            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-	          </div>
-	        </div>
-				</div>
-			</section>
-			<section class="ftco-section-no-padding bg-light">
-				<div class="hero-wrap">
-					<div class="overlay"></div>
-					<div class="d-flex">
-						<div class="author-image text img p-md-5 ftco-animate" style="background-image: url(${gif.gifDetails});">
-							
-						</div>
-						<div class="author-info text p-4 mt-5 mb-5 ftco-animate">
-							<div class="desc">
-								<h1 class="mb-4">Giphy GIFs</h1>
-								
+	          <div class="col-md-12 ftco-animate">
+	            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Edit</span></p>
+	            <h1 class="mb-3 bread">Update GIF Caption</h1>
+	            <div class="container">
+	            	<div class="row">
+			            <div class="col-sm-6">
 <div class="container">
-  <h2>Update Details</h2>
-  <form action="/action_page.php">
+  <form action="/updateCaptionForGif" method="post" enctype="multipart/form-data">
+      <input type="hidden" id="gifId" name="gifId" value="${gif.gifId}" readonly>
     <div class="form-group">
       <label for="giphyId">Giphy Id:</label>
-      <input type="text" class="form-control" id="giphyId" name="giphyId" value="${gif.gifId}" readonly>
+      <input type="text" class="form-control" id="giphyId" name="giphyId" value="${gif.giphyId}" readonly>
     </div>
     <div class="form-group">
       <label for="type">Type:</label>
@@ -94,150 +69,68 @@
     </div>
     <div class="form-group">
       <label for="gifUrl">Embed URL:</label>
-      <input type="text" class="form-control" id="gifUrl" name="gifUrl"  value="${gif.gifId}" readonly>
+      <input type="text" class="form-control" id="gifUrl" name="gifUrl"  value="${fn:escapeXml(gif.gifUrl)}" readonly>
     </div>
     <div class="form-group">
       <label for="gifDetails">URL:</label>
-      <input type="text" class="form-control" id="gifDetails" name="gifDetails"  value="${gif.gifId}" readonly>
+      <input type="text" class="form-control" id="gifDetails" name="gifDetails"  value="${gif.gifDetails}" readonly>
     </div>
     <div class="form-group">
       <label for="title">Title:</label>
-      <input type="text" class="form-control" id="title"  value="${gif.title}" name="title">
+      <input type="text" class="form-control" id="title"  value="${gif.title}" name="title" readonly>
     </div>
     <div class="form-group">
       <label for="caption">Caption:</label>
-      <input type="text" class="form-control" id="caption"  value="${gif.caption}" name="caption">
+      <input type="text" class="form-control" id="caption"  value="${gif.caption}" name="caption" required>
     </div>
     <div class="form-group">
       <label for="userName">Username:</label>
-      <input type="text" class="form-control" id="userName"  value="${gif.userName}" name="userName">
+      <input type="text" class="form-control" id="userName"  value="${gif.userName}" name="userName" readonly>
     </div>
     <div class="form-group">
       <label for="rating">Rating:</label>
-      <input type="text" class="form-control" id="rating"  value="${gif.rating}" name="rating">
+      <input type="text" class="form-control" id="rating"  value="${gif.rating}" name="rating" readonly>
     </div>
     <div class="form-group">
       <label for="createdOn">Created on:</label>
       <input type="text" class="form-control" id="createdOn"  value="${gif.createdOn}" name="createdOn" readonly>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="button" class="btn btn-warning" onclick="window.location.href='delete?gifId=${gif.getGifId()}';">&nbsp;Delete&nbsp;</button>
   </form>
 </div>
-		            </ul>
+			            </div>
+			            <div class="col-sm-6" ><img class="mt-4" src="${gif.gifDetails}"></div>
+		            </div>
 	            </div>
-						</div>
-					</div>
+	          </div>
+	        </div>
 				</div>
 			</section>
 			<section class="ftco-section">
 	    	<div class="container">
+	    		<h2>Random Images</h2>
 	    		<div class="row">
-						<div class="col-md-6 col-lg-3 ftco-animate">
-							<div class="staff">
-								<div class="img" style="background-image: url(images/person_1.jpg);"></div>
-								<div class="text pt-4">
-									<h3><a href="#">Edward Howard</a></h3>
-									<span class="position mb-2">Founder, Photographer</span>
-									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-									<ul class="ftco-social-icon d-flex">
-		                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-		              </ul>
+	    				<c:set var = "maxSize" scope = "session" value = "${gifs.size()-4 >= 0 ? gifs.size()-4 : 0}"/>
+	    				<c:set var = "index" scope = "session" value = "${maxSize == 0 ? 0 : random.nextInt(maxSize)}"/>
+    			        <c:forEach var = "i" begin = "0" end = "${gifs.size() >=4 ? 3 : gifs.size()-1 }">
+    			        	<c:set var = "g" scope = "session" value = "${(index+i) < 0 ? 0 : gifs.get(index+i)}"/>
+							<div class="col-md-6 col-lg-3 ftco-animate" onclick="event.preventDefault();window.location.href='update?gifId=${g.getGifId()}';" style="cursor:pointer">
+								<div class="staff">
+									<div class="img" style="background-image: url(${g.gifDetails});"></div>
+									<div class="text pt-4">
+										<h3><a href="#">${g.title}</a></h3>
+										<span class="position mb-2">${g.userName}</span>
+										<p>${g.caption}</p>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-6 col-lg-3 ftco-animate">
-							<div class="staff">
-								<div class="img" style="background-image: url(images/person_2.jpg);"></div>
-								<div class="text pt-4">
-									<h3><a href="#">Simon Will</a></h3>
-									<span class="position mb-2">Photo Specialists</span>
-									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-									<ul class="ftco-social-icon d-flex">
-		                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-		              </ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-3 ftco-animate">
-							<div class="staff">
-								<div class="img" style="background-image: url(images/person_3.jpg);"></div>
-								<div class="text pt-4">
-									<h3><a href="#">Brian Adam</a></h3>
-									<span class="position mb-2">Photographer</span>
-									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-									<ul class="ftco-social-icon d-flex">
-		                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-		              </ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-3 ftco-animate">
-							<div class="staff">
-								<div class="img" style="background-image: url(images/person_4.jpg);"></div>
-								<div class="text pt-4">
-									<h3><a href="#">Edward Howard</a></h3>
-									<span class="position mb-2">Graphic Designer</span>
-									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-									<ul class="ftco-social-icon d-flex">
-		                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-		              </ul>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 	    	</div>
 	    </section>
 	    <footer class="ftco-footer ftco-bg-dark ftco-section">
 	      <div class="container px-md-5">
-	        <div class="row mb-5">
-	          <div class="col-md">
-	            <div class="ftco-footer-widget mb-4 ml-md-4">
-	              <h2 class="ftco-heading-2">Category</h2>
-	              <ul class="list-unstyled categories">
-	                <li><a href="#">Photography <span>(6)</span></a></li>
-	                <li><a href="#">Fashion <span>(8)</span></a></li>
-	                <li><a href="#">Technology <span>(2)</span></a></li>
-	                <li><a href="#">Travel <span>(2)</span></a></li>
-	              </ul>
-	            </div>
-	          </div>
-	          <div class="col-md">
-	             <div class="ftco-footer-widget mb-4">
-	              <h2 class="ftco-heading-2">Archives</h2>
-	              <ul class="list-unstyled categories">
-	              	<li><a href="#">November 2018 <span>(105)</span></a></li>
-	              	<li><a href="#">October 2018 <span>(212)</span></a></li>
-	                <li><a href="#">September 2018 <span>(150)</span></a></li>
-	                <li><a href="#">August 2018 <span>(100)</span></a></li>
-	                <li><a href="#">July 2018 <span>(200)</span></a></li>
-	              </ul>
-	            </div>
-	          </div>
-	          <div class="col-md">
-	            <div class="ftco-footer-widget mb-4">
-	            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-	            	<div class="block-23 mb-3">
-		              <ul>
-		                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-		                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-		                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-		              </ul>
-		            </div>
-	            </div>
-	          </div>
-	        </div>
 	        <div class="row">
 	          <div class="col-md-12">
 
@@ -272,6 +165,50 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
-    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+  <script>
+  toastr.options = {
+		  "closeButton": true,
+		  "debug": false,
+		  "newestOnTop": false,
+		  "progressBar": false,
+		  "positionClass": "toast-top-right",
+		  "preventDuplicates": false,
+		  "onclick": null,
+		  "showDuration": "300",
+		  "hideDuration": "1000",
+		  "timeOut": "10000",
+		  "extendedTimeOut": "1000",
+		  "showEasing": "swing",
+		  "hideEasing": "linear",
+		  "showMethod": "fadeIn",
+		  "hideMethod": "fadeOut"
+	};
+  </script>
+    <c:choose>
+	  <c:when test="${isUpdated == true}">
+	     <script>
+		     toastr["success"]("Caption of this GIF successfully updated", "Success")
+		 </script>
+	  </c:when>
+	  <c:when test="${isUpdated == false}">
+	     <script>
+		     toastr["error"]("Problem occurred while updating GIF", "Error")
+		 </script>
+	  </c:when>
+	</c:choose> 
+    <c:choose>
+	  <c:when test="${isCreated == true}">
+	     <script>
+		     toastr["success"]("GIF successfully created", "Success")
+		 </script>
+	  </c:when>
+	  <c:when test="${isCreated == false}">
+	     <script>
+		     toastr["error"]("Problem encountered while saving GIF", "Error")
+		 </script>
+	  </c:when>
+	</c:choose>    
   </body>
 </html>

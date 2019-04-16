@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
-    <title>Capture - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Giphy - Manage your GIFs with ease</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -29,34 +29,21 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
   </head>
   <body>
 
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-			<h1 id="colorlib-logo"><a href="index.html"><span class="flaticon-camera"></span>Capture</a></h1>
+			<h1 id="colorlib-logo"><a href="index.html"><span class="flaticon-camera"></span>Giphy</a></h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
 					<li class="colorlib-active"><a href="index.html">Home</a></li>
-					<li><a href="gallery.html">Gallery</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li><a href="create">Upload</a></li>
 				</ul>
 			</nav>
-
-			<div class="colorlib-footer">
-				<h3>Follow Us Here!</h3>
-				<div class="d-flex justify-content-center">
-					<ul class="d-flex align-items-center">
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-facebook"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-twitter"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-instagram"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-linkedin"></i></a></li>
-					</ul>
-				</div>
-			</div>
 		</aside> <!-- END COLORLIB-ASIDE -->
 		<div id="colorlib-main">
 			<section class="ftco-section-2">
@@ -65,10 +52,11 @@
 <c:forEach items="${gifs}" var="gif">
 						<div class="col-md-4 ftco-animate">
 							<a href="${gif.getGifDetails()}" class="photography-entry img image-popup d-flex justify-content-center align-items-center" style="background-image: url(${gif.getGifDetails()});">
-								<div class="overlay"></div>
+								<div class="overlay"><i style="cursor:pointer;" onclick="event.preventDefault();window.location.href='update?gifId=${gif.getGifId()}';" class="far fa-edit mt-2 ml-2 pull-right"></i></div>
+									
 								<div class="text text-center">
 									<h3>${gif.getTitle()}</h3>
-									<span class="tag" style="cursor:pointer;" onclick="window.location.href='update?gifId=${gif.getGifId()}';event.preventDefault();">${gif.getCaption()}</span>
+									<span class="tag">${gif.getCaption()}</span>
 								</div>
 							</a>
 						</div>
@@ -78,43 +66,6 @@
 			</section>
 	    <footer class="ftco-footer ftco-bg-dark ftco-section">
 	      <div class="container px-md-5">
-	        <div class="row mb-5">
-	          <div class="col-md">
-	            <div class="ftco-footer-widget mb-4 ml-md-4">
-	              <h2 class="ftco-heading-2">Category</h2>
-	              <ul class="list-unstyled categories">
-	                <li><a href="#">Photography <span>(6)</span></a></li>
-	                <li><a href="#">Fashion <span>(8)</span></a></li>
-	                <li><a href="#">Technology <span>(2)</span></a></li>
-	                <li><a href="#">Travel <span>(2)</span></a></li>
-	              </ul>
-	            </div>
-	          </div>
-	          <div class="col-md">
-	             <div class="ftco-footer-widget mb-4">
-	              <h2 class="ftco-heading-2">Archives</h2>
-	              <ul class="list-unstyled categories">
-	              	<li><a href="#">November 2018 <span>(105)</span></a></li>
-	              	<li><a href="#">October 2018 <span>(212)</span></a></li>
-	                <li><a href="#">September 2018 <span>(150)</span></a></li>
-	                <li><a href="#">August 2018 <span>(100)</span></a></li>
-	                <li><a href="#">July 2018 <span>(200)</span></a></li>
-	              </ul>
-	            </div>
-	          </div>
-	          <div class="col-md">
-	            <div class="ftco-footer-widget mb-4">
-	            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-	            	<div class="block-23 mb-3">
-		              <ul>
-		                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-		                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-		                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-		              </ul>
-		            </div>
-	            </div>
-	          </div>
-	        </div>
 	        <div class="row">
 	          <div class="col-md-12">
 
@@ -149,6 +100,39 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  
     
+  <script>
+  toastr.options = {
+		  "closeButton": true,
+		  "debug": false,
+		  "newestOnTop": false,
+		  "progressBar": false,
+		  "positionClass": "toast-top-right",
+		  "preventDuplicates": false,
+		  "onclick": null,
+		  "showDuration": "300",
+		  "hideDuration": "1000",
+		  "timeOut": "10000",
+		  "extendedTimeOut": "1000",
+		  "showEasing": "swing",
+		  "hideEasing": "linear",
+		  "showMethod": "fadeIn",
+		  "hideMethod": "fadeOut"
+	};
+  </script>
+    <c:choose>
+	  <c:when test="${isDeleted == true}">
+	     <script>
+		     toastr["success"]("GIF deleted successfully", "Success")
+		 </script>
+	  </c:when>
+	  <c:when test="${isDeleted == false}">
+	     <script>
+		     toastr["error"]("Problem occurred while deleting GIF", "Error")
+		 </script>
+	  </c:when>
+	</c:choose> 
   </body>
 </html>
